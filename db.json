@@ -1,0 +1,15 @@
+{
+    "usuarios": [
+        {
+            "username": "rrodriguez",
+            "name": "Raúl",
+            "surnames": "Rodríguez",
+			"email": "rrodriguez@users.com",
+			"password": "123456",
+			"age": 30,
+			"active": true,
+			"last_logging": "2021-11-30",
+			"creation_date": "2021-11-30"
+        }
+	]
+}
