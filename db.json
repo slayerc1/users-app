@@ -1,15 +1,43 @@
 {
-    "usuarios": [
-        {
-            "username": "rrodriguez",
-            "name": "Raúl",
-            "surnames": "Rodríguez",
-			"email": "rrodriguez@users.com",
-			"password": "123456",
-			"age": 30,
-			"active": true,
-			"last_logging": "2021-11-30",
-			"creation_date": "2021-11-30"
-        }
-	]
+  "users": [
+    {
+      "id": "rrodriguez",
+      "username": "rrodriguez",
+      "name": "Raúl",
+      "surnames": "Rodríguez",
+      "email": "rrodriguez@users.com",
+      "password": "123456",
+      "age": 30,
+      "active": true,
+      "lastLogging": "2021-11-30",
+      "creationDate": "2021-11-30",
+      "urlImage": "https://i.pinimg.com/564x/c4/1c/f6/c41cf6e293a8ae90c3b6b863027bbd65.jpg"
+    },
+    {
+      "id": "gdiaz",
+      "username": "gdiaz",
+      "password": "123456",
+      "email": "gdiaz@users.com",
+      "name": "Gabriel",
+      "surnames": "Diaz",
+      "age": 18,
+      "active": true,
+      "lastLogging": "2021-11-30",
+      "creationDate": "2021-11-30",
+      "urlImage": "https://i.pinimg.com/474x/34/70/66/34706663ab318c0634f2b855659eb510.jpg"
+    },
+    {
+      "id": "rmuñoz",
+      "username": "rmuñoz",
+      "name": "Ramón",
+      "surnames": "Muñoz",
+      "email": "rmuñoz@users.com",
+      "password": "123456",
+      "age": 23,
+      "active": false,
+      "lastLogging": "2021-11-30",
+      "creationDate": "2021-11-30",
+      "urlImage": "https://i.pinimg.com/originals/e3/c4/20/e3c420786c5a2c25a09b7a337ba05a32.jpg"
+    }
+  ]
 }

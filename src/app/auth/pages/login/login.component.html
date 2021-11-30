@@ -1,0 +1,29 @@
+<mat-sidenav-container fullscreen>
+  <div class="container mt">
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <h1>Login</h1>
+      <mat-divider></mat-divider>
+      <form [formGroup]="formGroup" autocomplete="off" (ngSubmit)="login()">
+        <div fxLayout="column">
+          <mat-form-field fxFlex="100">
+            <mat-label>Username</mat-label>
+            <input matInput type="text" formControlName="username" />
+            <mat-error> Username is required </mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex="100">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" />
+            <mat-error> Password is required </mat-error>
+          </mat-form-field>
+          <br />
+          <div fxLayout fxLayoutAlign="end">
+            <button mat-raised-button color="primary" type="submit">
+              <mat-icon>login</mat-icon>
+              Login
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</mat-sidenav-container>

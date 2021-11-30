@@ -1,0 +1,102 @@
+<h1>
+  {{ user.id ? "Edit" : "New" }} User
+  <small>{{ formGroup.controls.username.value }}</small>
+</h1>
+<mat-divider></mat-divider>
+
+<div class="mt" fxLayout="column" fxLayout.gt-md="row" fxLayoutGap="40px">
+  <div fxFlex="20" fxLayoutAlign="center center">
+    <img [src]="user | image" [alt]="user.username" width="250" height="250" />
+  </div>
+  <form
+    fxFlex="50"
+    fxLayout="column"
+    [formGroup]="formGroup"
+    autocomplete="off"
+  >
+    <mat-form-field fxFlex="80">
+      <mat-label>Username</mat-label>
+      <input matInput type="text" formControlName="username" />
+      <mat-error>
+        {{ userNameErrorMessage }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="80">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" />
+      <mat-error>
+        {{ passwordErrorMessage }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="100">
+      <mat-label>Confirm Password</mat-label>
+      <input matInput type="password" formControlName="password2" />
+      <mat-error>
+        {{ passwordConfirmErrorMessage }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="100">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" />
+      <mat-error>
+        {{ emailErrorMessage }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="100">
+      <mat-label>Name</mat-label>
+      <input matInput type="text" formControlName="name" />
+      <mat-error *ngIf="formGroup.controls.name.hasError('required')">
+        Name is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="100">
+      <mat-label>Surnames</mat-label>
+      <input matInput type="text" formControlName="surnames" />
+      <mat-error *ngIf="formGroup.controls.surnames.hasError('required')">
+        Surnames is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="100">
+      <mat-label>Age</mat-label>
+      <input matInput type="number" formControlName="age" />
+      <mat-error>
+        {{ ageErrorMessage }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field fxFlex="100">
+      <mat-label>Url Image</mat-label>
+      <input matInput type="text" formControlName="urlImage" />
+    </mat-form-field>
+    <mat-slide-toggle color="primary" formControlName="active">
+      Active
+    </mat-slide-toggle>
+    <br />
+    <div fxLayout>
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        (click)="onSave()"
+      >
+        <mat-icon>edit</mat-icon>
+        {{ user.id ? "Edit" : "Add" }}
+      </button>
+      <div class="spacer"></div>
+      <button mat-raised-button type="button" (click)="goBack()">
+        <mat-icon>cancel</mat-icon>
+        Cancel
+      </button>
+      <div class="spacer"></div>
+      <button
+        *ngIf="user.id"
+        mat-raised-button
+        color="warn"
+        type="button"
+        (click)="delete()"
+      >
+        <mat-icon>remove</mat-icon>
+        Delete
+      </button>
+    </div>
+  </form>
+</div>

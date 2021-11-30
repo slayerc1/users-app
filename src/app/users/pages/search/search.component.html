@@ -1,0 +1,32 @@
+<div fxLayout="column">
+  <div>
+    <h1>Search Users</h1>
+    <mat-divider></mat-divider>
+  </div>
+  <div fxLayout="column" class="mt">
+    <h3>Search</h3>
+    <mat-form-field appearance="fill">
+      <input
+        type="text"
+        placeholder="Pick one"
+        matInput
+        [formControl]="myControl"
+        [matAutocomplete]="auto"
+        (input)="searchUser()"
+      />
+      <mat-autocomplete
+        autoActiveFirstOption
+        #auto="matAutocomplete"
+        (optionSelected)="optionSelected($event)"
+      >
+        <mat-option *ngFor="let user of users" [value]="user">
+          {{ user.username }} - {{ user.name }} {{ user.surnames }}
+        </mat-option>
+        <mat-option *ngIf="users.length === 0"> No data found </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxFlex="20" *ngIf="userSelected">
+    <app-user-card [user]="userSelected"></app-user-card>
+  </div>
+</div>
