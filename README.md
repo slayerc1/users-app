@@ -1,3 +1,13 @@
+# Instrucciones
+
+Descomprimir el fichero y entrar en la carpeta raiz.
+
+Abrir una terminal en la carpeta raiz del proyecto y ejecutar "npm install" para instalar las dependencias
+Luego ejecutar "json-server --watch db.json" para lanzar el backend, es necesario tener json-server para ello (instalacion de json-server "npm install -g json-server")
+Por último lanzar la aplicación con el comando "ng serve -o" (Es necesario tener instalado el Angular CLI)
+
+Para iniciar sesión en la aplicacion se puede usar las credenciales de cualquier usuario añadido en el fichero db.json por ejemplo "rrodriguez" password "123456".
+
 # UsersApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.11.
