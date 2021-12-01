@@ -1,9 +1,9 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Auth } from '../../interfaces/auth.interface';
 import { AuthService } from '../../services/auth.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { UsersService } from '../../../users/services/users.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +18,7 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
+    private usersService: UsersService,
     private router: Router
   ) {}
 
@@ -27,9 +28,17 @@ export class LoginComponent {
         this.formGroup.get('username')?.value,
         this.formGroup.get('password')?.value
       )
-      .subscribe((resp) => {
-        if (resp[0].id) {
-          this.router.navigate(['./users']);
+      .subscribe((user) => {
+        if (user.id) {
+          // Update last logging, this would be implemented in the backend
+          const tzoffset = new Date().getTimezoneOffset() * 60000; //offset in milliseconds
+          const localISOTime = new Date(Date.now() - tzoffset)
+            .toISOString()
+            .slice(0, -1);
+          user.lastLogging = localISOTime;
+          this.usersService.updateUser(user).subscribe(() => {
+            this.router.navigate(['./users']);
+          });
         }
       });
   }

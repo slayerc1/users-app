@@ -35,7 +35,11 @@ export class UsersService {
   addUser(user: User): Observable<User> {
     // This would be implemented in the backend
     user.id = user.username;
-    user.creationDate = new Date().toISOString().split('T')[0];
+    const tzoffset = new Date().getTimezoneOffset() * 60000; //offset in milliseconds
+    const localISOTime = new Date(Date.now() - tzoffset)
+      .toISOString()
+      .slice(0, -1);
+    user.creationDate = localISOTime;
     return this.http.post<User>(`${this.baseUrl}/users`, user);
   }
 

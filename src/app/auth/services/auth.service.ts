@@ -1,9 +1,9 @@
 import { Observable, of } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 
-import { Auth } from '../interfaces/auth.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { User } from '../../users/interfaces/users.interface';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -11,9 +11,9 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
   private baseUrl: string = environment.baseUrl;
-  private _auth: Auth | undefined;
+  private _auth: User | undefined;
 
-  get auth(): Auth {
+  get auth(): User {
     return { ...this._auth! };
   }
 
@@ -24,7 +24,7 @@ export class AuthService {
     if (!localStorage.getItem('token')) {
       return of(false);
     }
-    return this.http.get<Auth>(`${this.baseUrl}/users/${token}`).pipe(
+    return this.http.get<User>(`${this.baseUrl}/users/${token}`).pipe(
       map((auth) => {
         this._auth = auth;
         return true;
@@ -32,14 +32,15 @@ export class AuthService {
     );
   }
 
-  login(username: string, password: string): Observable<Auth[]> {
+  login(username: string, password: string): Observable<User> {
     return this.http
-      .get<Auth[]>(
+      .get<User[]>(
         `${this.baseUrl}/users?username=${username}&password=${password}`
       )
       .pipe(
-        tap((auth) => (this._auth = auth[0])),
-        tap((auth) => localStorage.setItem('token', auth[0].id))
+        map((auth) => auth[0]),
+        tap((user) => (this._auth = user)),
+        tap((user) => localStorage.setItem('token', user.id))
       );
   }
 
